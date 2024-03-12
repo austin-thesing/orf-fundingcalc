@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
   slider.oninput = function () {
     updateSliderValue(this.valueAsNumber);
     updateSliderFill();
-    sliderValueDisplay.textContent = `${Number(this.value).toLocaleString()}`;
+    sliderValueDisplay.textContent = `$${Number(this.value).toLocaleString()}`;
   };
 
   calculateButton.addEventListener("click", () => {
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
           toggleDisplay(".funding-calc_offercard", false);
           toggleDisplay(".funding-calc_calc-ui", true);
           toggleMobileCalcDisplay(true);
-          slider.value = 10000;
+          slider.value = "$10,000";
           slider.dispatchEvent(new Event("input", { bubbles: true }));
           break;
       }
