@@ -16,7 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
       newValue = Math.ceil(value / 10000) * 10000;
     }
     range.value = newValue;
-    rangeValue.innerHTML = `$${new Intl.NumberFormat().format(newValue)}`;
+    // Ensure slider.max is treated as a number for comparison
+    const isMaxValue = value >= parseInt(slider.max, 10);
+    const displayValue = isMaxValue ? `$${new Intl.NumberFormat().format(newValue)}+` : `$${new Intl.NumberFormat().format(newValue)}`;
+    rangeValue.innerHTML = displayValue;
   }
 
   function calculateOffer(revenue) {
@@ -39,7 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
   slider.oninput = function () {
     updateSliderValue(this.valueAsNumber);
     updateSliderFill();
-    sliderValueDisplay.textContent = `$${Number(this.value).toLocaleString()}`;
+    // Check if the slider is at its maximum value and append a "+" sign
+    const isMaxValue = this.valueAsNumber.toString() === slider.max;
+    sliderValueDisplay.textContent = isMaxValue ? `$${Number(this.value).toLocaleString()}+` : `$${Number(this.value).toLocaleString()}`;
   };
 
   calculateButton.addEventListener("click", () => {
@@ -62,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
           toggleDisplay(".funding-calc_offercard", false);
           toggleDisplay(".funding-calc_calc-ui", true);
           toggleMobileCalcDisplay(true);
-          slider.value = "$10,000";
+          slider.value = 10000;
           slider.dispatchEvent(new Event("input", { bubbles: true }));
           break;
       }
