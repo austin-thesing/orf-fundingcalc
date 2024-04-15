@@ -51,6 +51,13 @@ document.addEventListener("DOMContentLoaded", function () {
     let revenueValue = Number(range.value);
     let offer = calculateOffer(revenueValue);
     fundingAmountDisplay.textContent = `${offer.toLocaleString()}`;
+
+    // Send event to Google Analytics
+    gtag("event", "calculate_offer", {
+      event_category: "Engagement",
+      event_label: "Calculate Funding",
+      value: revenueValue,
+    });
   });
 
   document.addEventListener("click", function (event) {
