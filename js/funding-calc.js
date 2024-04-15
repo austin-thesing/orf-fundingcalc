@@ -52,11 +52,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let offer = calculateOffer(revenueValue);
     fundingAmountDisplay.textContent = `${offer.toLocaleString()}`;
 
-    // Send event to Google Analytics
+    // Send event to Google Analytics with custom parameter
     gtag("event", "calculate_offer", {
       event_category: "Engagement",
       event_label: "Calculate Funding",
-      value: revenueValue,
+      selected_amount: revenueValue, // Custom parameter to track the selected amount
     });
   });
 
