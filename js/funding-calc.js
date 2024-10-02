@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
   calculateButton.addEventListener("click", () => {
     let revenueValue = Number(range.value);
     let offer = calculateOffer(revenueValue);
-    fundingAmountDisplay.textContent = `$${offer.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
+    fundingAmountDisplay.textContent = `${offer.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
 
     // Send event to Google Analytics with custom parameter
     gtag("event", "calculate_offer", {
