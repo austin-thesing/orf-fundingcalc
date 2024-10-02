@@ -8,15 +8,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function updateSliderValue(value) {
     let newValue;
-    if (value <= 25000) {
+    if (value <= 10000) {
+      newValue = Math.ceil(value / 500) * 500;
+    } else if (value <= 50000) {
       newValue = Math.ceil(value / 1000) * 1000;
     } else if (value <= 100000) {
       newValue = Math.ceil(value / 5000) * 5000;
-    } else {
+    } else if (value <= 500000) {
       newValue = Math.ceil(value / 10000) * 10000;
+    } else {
+      newValue = Math.ceil(value / 50000) * 50000;
     }
     range.value = newValue;
-    // Ensure slider.max is treated as a number for comparison
     const isMaxValue = value >= parseInt(slider.max, 10);
     const displayValue = isMaxValue ? `$${new Intl.NumberFormat().format(newValue)}+` : `$${new Intl.NumberFormat().format(newValue)}`;
     rangeValue.innerHTML = displayValue;
@@ -42,7 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
   slider.oninput = function () {
     updateSliderValue(this.valueAsNumber);
     updateSliderFill();
-    // Check if the slider is at its maximum value and append a "+" sign
     const isMaxValue = this.valueAsNumber.toString() === slider.max;
     sliderValueDisplay.textContent = isMaxValue ? `$${Number(this.value).toLocaleString()}+` : `$${Number(this.value).toLocaleString()}`;
   };
