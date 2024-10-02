@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
     gtag("event", "calculate_offer", {
       event_category: "Engagement",
       event_label: "Calculate Funding",
-      selected_amount: revenueValue, // Custom parameter to track the selected amount
+      selected_amount: revenueValue,
     });
   });
 
