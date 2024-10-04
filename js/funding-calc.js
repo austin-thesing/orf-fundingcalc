@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function calculateOffer(revenue) {
-    let offer = Math.min(revenue * 3 * 0.5);
+    let offer = revenue * 3 * 0.5;
     return offer;
   }
 
